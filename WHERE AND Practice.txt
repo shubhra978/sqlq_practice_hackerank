@@ -1,0 +1,16 @@
+select review_id,user_id,submit_date,product_id
+from reviews 
+WHERE
+(stars >=4)
+and
+(review_id between 2000 and 6000)
+and
+(user_id != 142)
+
+
+select review_id,user_id,submit_date,product_id,stars
+from reviews 
+where 
+stars BETWEEN 2 and 5
+and
+user_id in(123,265,362)

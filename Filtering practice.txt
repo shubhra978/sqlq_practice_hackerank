@@ -1,0 +1,11 @@
+select customer_id,customer_name,gender,age,zip_code,city,state
+FROM customers 
+where 
+age BETWEEN 18 and 22
+and
+state in ( 'Victoria', 'Tasmania', 'Queensland')
+and
+gender != 'n/a'
+and
+(customer_name LIKE 'A%'
+OR customer_name LIKE 'B%');
