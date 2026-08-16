@@ -1,0 +1,3 @@
+SELECT ticker, min(open) as min from stock_prices
+group by ticker
+order by min desc
