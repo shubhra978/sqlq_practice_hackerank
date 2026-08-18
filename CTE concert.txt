@@ -1,0 +1,11 @@
+//Write a query to rank the artists within each genre based on their revenue per member and extract the top revenue-generating artist from each genre. Display the output of the artist name, genre, concert revenue, number of members, and revenue per band member, sorted by the highest revenue per member within each genre.
+
+with artist_rank as (
+select artist_name,concert_revenue,genre,number_of_members,
+(concert_revenue/number_of_members) as revenue_per_member,
+rank() over(partition by genre order by (concert_revenue/number_of_members) desc) as rank_revenue
+from concerts)
+
+select  artist_name,concert_revenue,genre,number_of_members,revenue_per_member from artist_rank
+where rank_revenue = 1
+order by revenue_per_member desc
