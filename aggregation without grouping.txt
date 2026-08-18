@@ -1,0 +1,12 @@
+// average of city population
+
+select avg(population)
+from CITY
+having DISTRICT = "California"
+
+//JAPAN POPULATION TOTAL
+
+
+SELECT SUM(POPULATION) AS TOTAL_POPULATION
+FROM CITY
+WHERE COUNTRYCODE ='JPN'
