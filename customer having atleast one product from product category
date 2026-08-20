@@ -1,0 +1,7 @@
+SELECT c.customer_id 
+from customer_contracts c
+left JOIN
+products p
+on c.product_id = p.product_id
+group by c.customer_id
+having COUNT(DISTINCT(P.PRODUCT_CATEGORY))= (SELECT COUNT(DISTINCT(PRODUCT_CATEGORY)) FROM PRODUCTS)
