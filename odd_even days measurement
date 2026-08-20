@@ -1,0 +1,14 @@
+WITH ROW_COUNT AS (
+    SELECT 
+        ROW_NUMBER() OVER (ORDER BY measurement_id) AS row_num,
+        measurement_value,
+        measurement_time
+    FROM measurements
+)
+SELECT 
+    TO_CHAR(DATE_TRUNC('day', measurement_time), 'YYYY-MM-DD HH24:MI:SS') AS measurement_day,
+    SUM(CASE WHEN row_num % 2 != 0 THEN measurement_value END) AS odd_sum,
+    SUM(CASE WHEN row_num % 2 = 0 THEN measurement_value END) AS even_sum
+FROM ROW_COUNT
+GROUP BY DATE_TRUNC('day', measurement_time)
+ORDER BY measurement_day;
