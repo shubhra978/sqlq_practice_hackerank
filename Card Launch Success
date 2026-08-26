@@ -1,0 +1,13 @@
+with card_date AS
+(select card_name,
+issued_amount,
+make_date(issue_year,issue_month,1) as issued_date,
+min(make_date(issue_year,issue_month,1)) 
+over(partition by card_name) as launch_date
+from monthly_cards_issued)
+
+select card_name,
+issued_amount
+from card_date
+where issued_date=launch_date
+order by issued_amount desc
