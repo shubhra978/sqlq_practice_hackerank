@@ -1,0 +1,17 @@
+SELECT title, (domestic_sales + international_sales) / 1000000 AS gross_sales_millions
+FROM movies
+  JOIN boxoffice
+    ON movies.id = boxoffice.movie_id;
+
+
+SELECT m.title, b.rating*10 as new_rating
+FROM movies m
+  inner JOIN boxoffice b
+    ON m.id = b.movie_id;
+
+SELECT  M.title
+FROM MOVIES M
+WHERE YEAR IN 
+(SELECT 
+CASE 
+WHEN YEAR % 2 = 0 THEN YEAR END FROM movies)
