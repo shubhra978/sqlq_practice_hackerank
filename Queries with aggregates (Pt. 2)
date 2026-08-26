@@ -1,0 +1,8 @@
+SELECT MAX(years_employed) FROM employees;
+
+SELECT avg(years_employed),ROLE
+FROM employees
+GROUP BY ROLE;
+
+SELECT SUM(years_employed),BUILDING FROM employees
+GROUP BY BUILDING
