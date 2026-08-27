@@ -1,0 +1,10 @@
+SELECT part, assembly_step FROM parts_assembly
+where finish_date is null;
+
+
+SELECT part, assembly_step FROM parts_assembly
+where part in
+(select part from parts_assembly
+where assembly_step = 1 and finish_date is not null)
+and finish_date is null
+
