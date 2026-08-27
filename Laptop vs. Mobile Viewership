@@ -1,0 +1,6 @@
+SELECT
+(select count(device_type) 
+FROM viewership
+where device_type = 'tablet' or device_type = 'phone')as mobile_views,(select count(device_type) 
+FROM viewership
+where device_type = 'laptop') as laptop_views
