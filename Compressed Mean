@@ -1,0 +1,8 @@
+select 
+round(
+cast(
+sum
+(item_count * order_occurrences)/
+sum
+(order_occurrences)
+as numeric),1) from items_per_order
