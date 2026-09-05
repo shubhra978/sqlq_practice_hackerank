@@ -2,9 +2,9 @@ with sender_total as (
 select 
 sender_id,
 count(message_id) as message_count
-from messages 
-group by
-sender_id
+from messages
+where sent_date between '08/01/2022' and '09/01/2022'
+group by sender_id
 order by count(message_id) DESC
 limit 2)
 
