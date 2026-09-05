@@ -1,0 +1,11 @@
+with sender_total as (
+select 
+sender_id,
+count(message_id) as message_count
+from messages 
+group by
+sender_id
+order by count(message_id) DESC
+limit 2)
+
+SELECT * from sender_total
