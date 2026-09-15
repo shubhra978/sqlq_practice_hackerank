@@ -10,10 +10,22 @@ SELECT * from profit_of_goods
 
 
  /*part 2 */
-SELECT manufacturer,
-count(drug),
-sum(cogs-total_sales)
+with loss_details as(SELECT manufacturer,
+drug,
+(cogs-total_sales) as total_loss
 FROM pharmacy_sales
-where (total_sales-cogs)<0
+where cogs > total_sales
+)
+
+select manufacturer,count(drug), sum(total_loss) from loss_details
 group by manufacturer
-order by sum desc;
+order by sum(total_loss) desc
+
+/*part 3 */
+SELECT 
+manufacturer,
+concat('$',round(sum(total_sales)/1000000),' million')as sale
+FROM pharmacy_sales
+group by manufacturer
+order by sum(total_sales) desc
+;
