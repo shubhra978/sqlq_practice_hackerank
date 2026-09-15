@@ -21,7 +21,7 @@ select manufacturer,count(drug), sum(total_loss) from loss_details
 group by manufacturer
 order by sum(total_loss) desc
 
-/*part 3 * /
+/*part 3 */
 SELECT 
 manufacturer,
 concat('$',round(sum(total_sales)/1000000),' million')as sale
