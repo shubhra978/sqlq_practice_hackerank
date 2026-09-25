@@ -1,4 +1,9 @@
-with order_detail as (select customer_id,count(order_id) as order_count from orders group by customer_id)
+with order_detail as (
+  select customer_id,
+  count(order_id) as order_count 
+  from orders 
+  group by customer_id)
+  
 select name,
 membership,
 order_count,
