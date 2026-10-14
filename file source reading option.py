@@ -16,3 +16,9 @@ recursive_loaded_df = spark.read.format("parquet")\
     .option("recursiveFileLookup", "true")\
     .load("examples/src/main/resources/dir1")
 recursive_loaded_df.show()
+
+
+# Only load files modified before 07/1/2050 @ 08:30:00
+df = spark.read.load("examples/src/main/resources/dir1",
+                     format="parquet", modifiedBefore="2050-07-01T08:30:00")
+df.show()
