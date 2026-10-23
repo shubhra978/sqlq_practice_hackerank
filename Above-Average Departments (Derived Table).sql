@@ -15,3 +15,4 @@ INNER JOIN (
 ON e.department = dept_summary.department
 WHERE e.salary > dept_summary.dept_avg
 ORDER BY above_avg_by DESC;
+
