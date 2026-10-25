@@ -56,3 +56,31 @@ from customer_cte
 group by customer_id
 having sum(amount) > 500
 order by customer_id;
+
+/*
+Problem: For each customer who made at least one purchase, calculate:
+
+Total revenue generated (lifetime_spend)
+
+Total number of transactions
+
+Average amount spent per transaction (avg_transaction_amount), rounded to 2 decimal places
+*/
+/*using cte*/
+with cust_cte as (
+select v.*,t.*
+from
+visits v
+left join
+transactions t
+on v.visit_id = t.visit_id
+)
+
+select customer_id,
+sum(amount) as total_amt,
+count(transaction_id) as no_of_transaction,
+round(avg(amount) over(partition by customer_id),2) as avg_transaction_amount
+from cust_cte
+group by customer_id,amount
+having count(transaction_id)>=1
+order by customer_id
