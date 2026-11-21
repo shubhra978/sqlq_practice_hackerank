@@ -5,5 +5,6 @@ from posts
 WHERE DATE_PART('year', post_date) = 2021
 group by user_id)
 
+
 select * from user_day_diff
 where day_diff !=0
