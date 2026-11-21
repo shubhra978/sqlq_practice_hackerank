@@ -8,7 +8,6 @@ on c.customer_id = o.customer_id
 where order_id is null
 order by name
 
-
 /*with subquery*/
 
 select
